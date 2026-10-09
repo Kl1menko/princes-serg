@@ -27,7 +27,6 @@ body::before{content:"";position:fixed;top:0;bottom:0;left:clamp(26px,7vw,64px);
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
 .sheet{position:relative;z-index:1;max-width:760px;margin:0 auto;padding-inline:clamp(40px,11vw,96px) 18px;padding-block:36px 72px;display:flex;flex-direction:column;gap:60px}
 
-.date{font-family:var(--hand);font-size:24px;color:var(--pen);margin:0;transform:rotate(-2deg);align-self:flex-end}
 .hero{position:relative;display:flex;flex-direction:column;gap:6px}
 h1{font-family:var(--hand);font-weight:700;font-size:clamp(58px,14vw,128px);line-height:.88;margin:0;letter-spacing:-.01em}
 h1 .row1{display:block;transform:rotate(-3deg);transform-origin:left}
@@ -36,8 +35,6 @@ h1 .name{position:relative;display:inline-block;padding:0 .12em;margin-top:.12em
 h1 .name::before{content:"";position:absolute;left:-.05em;right:-.08em;top:.28em;bottom:.04em;background:var(--hl-pink);opacity:.85;z-index:-1;border-radius:.3em .1em .4em .15em;transform:skewX(-8deg) rotate(-1deg);transform-origin:left;animation:swipe .9s .3s cubic-bezier(.6,0,.3,1) both}
 @keyframes swipe{from{transform:skewX(-8deg) scaleX(0)}}
 .doodle{position:absolute;pointer-events:none;overflow:visible}
-.note{font-size:22px;margin:10px 0 0;max-width:30ch}
-.note mark{background:linear-gradient(transparent 55%,var(--hl-lime) 55%);color:inherit;padding:0 2px}
 
 .pol{align-self:center;position:relative;background:#fff;padding:14px 14px 0;box-shadow:0 8px 22px rgba(31,42,68,.18);transform:rotate(-4deg);width:min(300px,100%);max-width:100%}
 .pol img.ph{display:block;width:100%;object-fit:cover;padding:0}
@@ -93,6 +90,47 @@ h2 u{text-decoration:none;background:linear-gradient(transparent 60%,var(--hl-or
 
 .sign{font-family:var(--hand);font-size:clamp(40px,9vw,64px);line-height:1;margin:0;transform:rotate(-3deg);align-self:flex-end;text-align:right}
 .sign small{display:block;font-size:26px;color:var(--pen)}
+.cats{display:flex;flex-direction:column}
+.catgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:34px 28px;margin-top:10px}
+.cat{--r:-3deg;position:relative;font:inherit;color:var(--ink);background:#fff;border:0;padding:12px 12px 0;width:min(230px,100%);cursor:pointer;box-shadow:0 8px 22px rgba(31,42,68,.18);transform:rotate(var(--r));transition:transform .3s cubic-bezier(.3,1.4,.5,1)}
+.cat:nth-child(2){--r:2.5deg}.cat:nth-child(3){--r:-1.5deg}
+.cat:hover{transform:rotate(0) translateY(-6px)}
+.cat:focus-visible{outline:2px dashed var(--pen);outline-offset:6px}
+.cat svg{display:block;width:100%;height:auto;background:var(--bg)}
+.cat .tape{transform:rotate(-2deg)}
+.cat .cap{display:block;font-family:var(--hand);font-size:25px;line-height:1.05;padding:10px 4px 14px;text-align:center}
+.bubble{position:absolute;z-index:2;top:-20px;right:-14px;background:#fff;border:2.5px solid var(--ink);border-radius:18px 18px 18px 4px;padding:2px 12px;font-family:var(--hand);font-weight:700;font-size:28px;opacity:0;transform:scale(.4) rotate(8deg);transition:transform .25s cubic-bezier(.3,1.6,.5,1),opacity .2s;pointer-events:none;white-space:nowrap}
+.cat.talk .bubble{opacity:1;transform:scale(1) rotate(8deg)}
+.cat.talk svg{animation:wig .45s ease-in-out}
+@keyframes wig{25%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+
+/* Desktop: two-column notebook spread */
+@media (min-width:1000px){
+  body::before{left:max(48px,calc(50% - 560px + 64px))}
+  .sheet{max-width:1120px;padding:56px 48px 96px 132px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:88px 72px;align-items:center}
+  .hero{grid-column:1}
+  h1{font-size:112px}
+  .pol{grid-column:2;width:360px;justify-self:center;transition:transform .35s cubic-bezier(.3,1.4,.5,1),box-shadow .35s}
+  .pol:hover{transform:rotate(0) scale(1.03);box-shadow:0 16px 36px rgba(31,42,68,.24)}
+  .pol figcaption{font-size:32px}
+  .letter{grid-column:1;font-size:36px;max-width:28ch}
+  .song{grid-column:2;justify-self:center;align-self:center;position:relative;background:#FFF6C9;padding:40px 34px 44px;box-shadow:0 8px 22px rgba(31,42,68,.14);transform:rotate(2deg);max-width:440px}
+  .song::before{content:"";position:absolute;width:110px;height:30px;background:var(--hl-lime);opacity:.8;top:-14px;left:50%;margin-left:-55px;transform:rotate(-3deg)}
+  .song h2{font-size:44px}
+  .memebtn{font-size:32px;white-space:nowrap}
+  #d1{top:6px!important;right:10px!important;width:84px;height:84px}
+  #d2{position:absolute!important;margin:0!important;right:-70px;bottom:-30px}
+  .cats,.cakesec,.credits{grid-column:1 / -1}
+  .catgrid{justify-content:space-between;gap:40px}
+  .cat{width:270px}
+  .cakesec{padding-top:24px;border-top:2px dashed var(--grid)}
+  .cakebox{gap:20px 64px}
+  #cake{width:380px}
+  .cakeside{font-size:24px;max-width:360px}
+  .credits{justify-content:flex-start;gap:40px 96px;padding-left:40px}
+  .pol-dog{width:320px;grid-column:auto}
+  .credit-wish{font-size:76px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -101,10 +139,8 @@ h2 u{text-decoration:none;background:linear-gradient(transparent 60%,var(--hl-or
 <canvas id="fx"></canvas>
 <main class="sheet">
   <header class="hero">
-    <p class="date">сьогодні, найкращий день року</p>
     <h1><span class="row1">З днем</span><span class="row1">народження,</span><span class="title-pre">маленька принцеса</span><span class="name" id="name">Сержіо!</span></h1>
     <svg class="doodle" id="d1" width="72" height="72" viewBox="0 0 90 90" style="right:0;top:44px"></svg>
-    <p class="note">Цю сторінку для тебе <mark>особисто зробила Фібі</mark>. Гортай униз.</p>
     <svg class="doodle" id="d2" width="130" height="80" style="position:relative;align-self:flex-end;margin:-6px 14% -50px 0"></svg>
   </header>
 
@@ -120,7 +156,7 @@ h2 u{text-decoration:none;background:linear-gradient(transparent 60%,var(--hl-or
     <p>Але знаю одне — <u>у хороших людей завжди все ок буде</u>, тому не парься)</p>
   </section>
 
-  <section>
+  <section class="song">
     <h2>Спеціально <u>для принцеси</u></h2>
     <p class="hint">натискай, вмикай звук</p>
     <a class="memebtn" id="meme" href="#" target="_blank" rel="noopener">
@@ -129,7 +165,29 @@ h2 u{text-decoration:none;background:linear-gradient(transparent 60%,var(--hl-or
     </a>
   </section>
 
-  <section>
+  <section class="cats">
+    <h2>Мемні коти <u>теж вітають</u></h2>
+    <p class="hint">тицяй на котів</p>
+    <div class="catgrid">
+      <button class="cat" type="button" style="--bg:#DCE7F7">
+        <span class="tape"></span><span class="bubble">мяу!</span>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"><ellipse cx="100" cy="182" rx="60" ry="32" fill="#C9CED8"/><polygon points="40,80 50,22 88,58" fill="#C9CED8"/><polygon points="160,80 150,22 112,58" fill="#C9CED8"/><polygon points="52,66 55,38 75,57" fill="#FF9EC6" stroke="none"/><polygon points="148,66 145,38 125,57" fill="#FF9EC6" stroke="none"/><ellipse cx="100" cy="105" rx="66" ry="56" fill="#C9CED8"/><circle cx="74" cy="96" r="15" fill="#1F2A44"/><circle cx="126" cy="96" r="15" fill="#1F2A44"/><circle cx="79" cy="90" r="5" fill="#fff" stroke="none"/><circle cx="131" cy="90" r="5" fill="#fff" stroke="none"/><circle cx="70" cy="101" r="2.5" fill="#fff" stroke="none"/><circle cx="122" cy="101" r="2.5" fill="#fff" stroke="none"/><path d="M58 80 L86 71 M142 80 L114 71"/><path d="M66 114 q-6 14 1 26 q7 -12 -1 -26 z" fill="#7FB2F0" stroke="#2B4BB8" stroke-width="2"/><path d="M134 114 q-6 14 1 26 q7 -12 -1 -26 z" fill="#7FB2F0" stroke="#2B4BB8" stroke-width="2"/><path d="M94 112 L106 112 L100 119 Z" fill="#FF5FA2"/><path d="M88 134 q12 -9 24 0"/><path d="M58 112 L20 104 M58 121 L22 126 M142 112 L180 104 M142 121 L178 126" stroke-width="2"/></g></svg>
+        <span class="cap">коли трактор знову зламався</span>
+      </button>
+      <button class="cat" type="button" style="--bg:#EAF9C2">
+        <span class="tape"></span><span class="bubble">мяу!</span>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M58 168 Q100 200 142 168" stroke="#FFB23E" stroke-width="6" stroke-dasharray="2 9"/><ellipse cx="100" cy="182" rx="60" ry="32" fill="#FFFFFF"/><polygon points="40,80 50,22 88,58" fill="#FFFFFF"/><polygon points="160,80 150,22 112,58" fill="#FFFFFF"/><polygon points="52,66 55,38 75,57" fill="#FF9EC6" stroke="none"/><polygon points="148,66 145,38 125,57" fill="#FF9EC6" stroke="none"/><ellipse cx="100" cy="105" rx="66" ry="56" fill="#FFFFFF"/><rect x="54" y="84" width="40" height="24" rx="7" fill="#1F2A44"/><rect x="106" y="84" width="40" height="24" rx="7" fill="#1F2A44"/><path d="M94 92 L106 92 M54 90 L36 84 M146 90 L164 84"/><path d="M61 91 l12 0 M113 91 l12 0" stroke="#fff" stroke-width="2.5"/><path d="M94 112 L106 112 L100 119 Z" fill="#FF5FA2"/><path d="M92 127 q14 8 26 -6"/><path d="M58 112 L20 104 M58 121 L22 126 M142 112 L180 104 M142 121 L178 126" stroke-width="2"/></g></svg>
+        <span class="cap">Сержіо: «все ок буде»</span>
+      </button>
+      <button class="cat" type="button" style="--bg:#FFE1EE">
+        <span class="tape"></span><span class="bubble">мяу!</span>
+        <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"><ellipse cx="100" cy="182" rx="60" ry="32" fill="#FFB23E"/><polygon points="40,80 50,22 88,58" fill="#FFB23E"/><polygon points="160,80 150,22 112,58" fill="#FFB23E"/><polygon points="52,66 55,38 75,57" fill="#FF9EC6" stroke="none"/><polygon points="148,66 145,38 125,57" fill="#FF9EC6" stroke="none"/><ellipse cx="100" cy="105" rx="66" ry="56" fill="#FFB23E"/><polygon points="78,58 100,4 122,58" fill="#FF5FA2"/><path d="M85 42 L113 34 M91 26 L108 21" stroke="#C6F432" stroke-width="5"/><circle cx="100" cy="6" r="7" fill="#C6F432"/><path d="M62 100 q12 -13 24 0 M114 100 q12 -13 24 0"/><ellipse cx="66" cy="117" rx="9" ry="6" fill="#FF5FA2" stroke="none" opacity=".45"/><ellipse cx="134" cy="117" rx="9" ry="6" fill="#FF5FA2" stroke="none" opacity=".45"/><path d="M94 112 L106 112 L100 119 Z" fill="#FF5FA2"/><path d="M100 119 q0 8 -10 8 M100 119 q0 8 10 8"/><path d="M95 127 q5 13 10 0" fill="#FF5FA2" stroke-width="2.5"/><circle cx="150" cy="150" r="3" fill="#FF5FA2" stroke="none"/><circle cx="160" cy="140" r="2.5" fill="#C6F432" stroke="none"/><circle cx="44" cy="148" r="3" fill="#2B4BB8" stroke="none"/><path d="M58 112 L20 104 M58 121 L22 126 M142 112 L180 104 M142 121 L178 126" stroke-width="2"/></g></svg>
+        <span class="cap">кіт, що вже з’їв твій торт</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="cakesec">
     <h2>Задмухай свічки</h2>
     <div class="cakebox">
       <svg id="cake" viewBox="0 0 280 230"></svg>
@@ -184,12 +242,17 @@ if(R){
   const d1=rs(document.getElementById('d1'));
   const star=[[45,4],[56,32],[86,34],[62,53],[71,84],[45,66],[19,84],[28,53],[4,34],[34,32]];
   document.getElementById('d1').appendChild(d1.polygon(star,{stroke:'#2B4BB8',strokeWidth:2.2,fill:'#FFB23E',fillStyle:'zigzag',hachureGap:6,roughness:1.8}));
-  const d2=rs(document.getElementById('d2'));
+  // arrow to the photo: points down on mobile, up-right on desktop where the photo sits beside the title
+  const el2=document.getElementById('d2'),wide=matchMedia('(min-width:1000px)');
   const a={stroke:'#F06A6A',strokeWidth:2.8,roughness:0.7,bowing:0.5};
-  const el2=document.getElementById('d2');
-  el2.appendChild(d2.curve([[10,8],[50,10],[95,30],[110,70]],{...a,roughness:1}));
-  el2.appendChild(d2.line(110,70,98,59,a));
-  el2.appendChild(d2.line(110,70,112,54,a));
+  function arrow(){el2.innerHTML='';const d2=rs(el2);
+    if(wide.matches){el2.setAttribute('width','170');el2.setAttribute('height','90');
+      el2.appendChild(d2.curve([[8,78],[60,80],[115,58],[160,16]],{...a,roughness:1}));
+      el2.appendChild(d2.line(160,16,143,19,a));el2.appendChild(d2.line(160,16,157,33,a));
+    }else{el2.setAttribute('width','130');el2.setAttribute('height','80');
+      el2.appendChild(d2.curve([[10,8],[50,10],[95,30],[110,70]],{...a,roughness:1}));
+      el2.appendChild(d2.line(110,70,98,59,a));el2.appendChild(d2.line(110,70,112,54,a))}}
+  arrow();wide.addEventListener('change',arrow);
   document.querySelectorAll('.box').forEach((b,i)=>{const s=rs(b);
     b.appendChild(s.rectangle(2,2,26,26,{stroke:'#1F2A44',strokeWidth:1.6,roughness:1.6}));
     b.appendChild(s.linearPath([[6,15],[13,23],[30,-2]],{stroke:'#F06A6A',strokeWidth:3,roughness:1.2,seed:i+3}))});
@@ -225,6 +288,13 @@ drawCake();upd();
 /* ---------- meme button ---------- */
 document.getElementById('meme').href = MEME_URL;
 document.getElementById('meme').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect();burst(120,r.left+r.width/2,r.top)});
+/* ---------- meme cats ---------- */
+const MEOWS=['мяу!','МЯЯЯУ','з днюхою!','мур-мур','дай торт'];
+document.querySelectorAll('.cat').forEach(c=>c.addEventListener('click',()=>{
+  const b=c.querySelector('.bubble');b.textContent=MEOWS[Math.floor(Math.random()*MEOWS.length)];
+  c.classList.remove('talk');void c.offsetWidth;c.classList.add('talk');
+  clearTimeout(c._t);c._t=setTimeout(()=>c.classList.remove('talk'),1400);
+  const r=c.getBoundingClientRect();burst(40,r.left+r.width/2,r.top+20)}));
 </script>
 
 </body>
