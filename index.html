@@ -91,7 +91,7 @@ h2 u{text-decoration:none;background:linear-gradient(transparent 60%,var(--hl-or
 .sign{font-family:var(--hand);font-size:clamp(40px,9vw,64px);line-height:1;margin:0;transform:rotate(-3deg);align-self:flex-end;text-align:right}
 .sign small{display:block;font-size:26px;color:var(--pen)}
 .cats{display:flex;flex-direction:column}
-.catgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:34px 28px;margin-top:10px}
+.catgrid{display:flex;flex-wrap:wrap;justify-content:center;gap:34px 28px}
 .cat{--r:-4deg;position:relative;font:inherit;color:var(--ink);background:none;border:0;padding:0;width:min(240px,100%);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transform:rotate(var(--r));transition:transform .3s cubic-bezier(.3,1.4,.5,1)}
 .cat:nth-child(2){--r:3deg}
 .cat:hover{transform:rotate(0) translateY(-6px) scale(1.04)}
@@ -172,8 +172,6 @@ h2 u{text-decoration:none;background:linear-gradient(transparent 60%,var(--hl-or
   </section>
 
   <section class="cats">
-    <h2>Мемні коти <u>теж вітають</u></h2>
-    <p class="hint">тицяй на котів</p>
     <div class="catgrid">
       <button class="cat cut side" type="button" style="--bg:#DCE7F7">
         <span class="bubble">мяу!</span>
